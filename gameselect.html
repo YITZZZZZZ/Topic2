@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <title>選擇遊戲</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #fef4fd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #000;
+      margin-bottom: 40px;
+    }
+
+    .game-options {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .game-card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      width: 160px;
+      height: 180px;
+      text-align: center;
+      padding: 20px 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px) scale(1.05);
+      background: linear-gradient(135deg, #CECEFF, #CECEFF);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .emoji {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .game-card p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .user-info {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: #333;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .user-info button {
+      padding: 6px 12px;
+      background-color: #CECEFF;
+      border: none;
+      border-radius: 8px;
+      size: 40px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .user-info button:hover {
+      background-color: #b2b2ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>選擇遊戲</h1>
+  <div class="user-info">
+    <span id="username">您好，</span>
+    <button onclick="exportGameData()">匯出遊戲報表</button>
+    <button onclick="logout()">登出</button>
+  </div>
+
+  <div class="game-options">
+    <div class="game-card" onclick="location.href='/changecardhead.html'">
+      <div class="emoji">🃏🔄</div>
+      <p>翻牌</p>
+    </div>
+    <div class="game-card" onclick="location.href='/'">
+      <div class="emoji">🎈💥</div>
+      <p>擊破氣球</p>
+    </div>
+    <div class="game-card" onclick="location.href='/checkcardstart'">
+      <div class="emoji">🔢🧠</div>
+      <p>數字配對</p>
+    </div>
+    <div class="game-card" onclick="location.href='/'">
+      <div class="emoji">🔢➡️🔢</div>
+      <p>數字連連看</p>
+    </div>
+  </div>
+
+  <script>
+    const username = localStorage.getItem("nickname") || "訪客";
+    document.getElementById("username").textContent = `您好，${username}`;
+
+    function logout() {
+      localStorage.clear();
+      location.href = "/"; // 登入頁面路徑
+    }
+
+    function exportGameData() {
+      const records = JSON.parse(localStorage.getItem("gameResults") || "[]");
+      if (records.length === 0) {
+        alert("沒有遊戲紀錄可匯出！");
+        return;
+      }
+
+      const ws = XLSX.utils.json_to_sheet(records);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "遊戲紀錄");
+      XLSX.writeFile(wb, "game_results.xlsx");
+
+      // 若要保留紀錄，註解掉以下這行
+      localStorage.removeItem("gameResults");
+    }
+  </script>
+</body>
+</html>
