@@ -1,0 +1,81 @@
+/* 設置頁面主體 */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden; /* 防止出現滾動條 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F0E5F4;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+/* 遊戲結束提示 */
+h2 {
+  margin-bottom: 30px;
+  font-size: 3rem;
+  color: #333;
+}
+
+/* 剩餘時間顯示區塊：右上角固定位置 */
+#timer-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  background-color: #ffffffa0;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 響應式字體調整 */
+@media (max-width: 768px) {
+  #timer-container {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #timer-container {
+    font-size: 1.2rem;
+  }
+}
+
+/* 按鈕排列區域 */
+form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 一行四個按鈕 */
+  gap: 20px;
+  justify-items: center;
+}
+
+/* 按鈕樣式 */
+input[type="button"] {
+  width: 200px;
+  height: 200px;
+  font-size: 4rem;
+  border-radius: 15px;
+  border: none;
+  background-color: #6495ED;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+/* 按鈕懸停效果 */
+input[type="button"]:hover {
+  background-color: #B0C4DE;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 禁用按鈕樣式 */
+input[type="button"]:disabled {
+  background-color: #D3D3D3;
+  cursor: default;
+}

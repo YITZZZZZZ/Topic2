@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #f6e6ff, #e6ccf2);
+  font-family: "微軟正黑體", Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-size: 40px;
+  color: #4b2e83;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  gap: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  border: none;
+  padding: 40px 60px;
+  font-size: 28px;
+  margin: 20px 0;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-decoration: none;
+}
+
+.button1 {
+  background: linear-gradient(to right, #f2c8b2, #f7d9c4);
+  color: #333;
+  border: 2px solid #d29b87;
+}
+
+.button1:hover {
+  background: white;
+  color: #4b2e83;
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.button2 {
+  background: linear-gradient(to right, #f1aeab, #f6c5c3);
+  color: #333;
+  border: 2px solid #c98280;
+}
+
+.button2:hover {
+  background: white;
+  color: #4b2e83;
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
