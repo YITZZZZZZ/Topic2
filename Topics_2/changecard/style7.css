@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0E5F4;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #333;
+  }
+  
+  form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 一行三個按鈕 */
+    gap: 20px; /* 每個按鈕的間距 */
+    justify-items: center; /* 讓按鈕水平置中 */
+  }
+  input[type="button"] {
+    width: 120px;
+    height: 120px;
+    font-size: 40px;
+    border-radius: 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  input[type="button"]:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+  input[type="button"]:disabled {
+    background-color: #ccc;
+    cursor: default;
+  }
+  .arrow-button {
+    position: absolute;
+    right: 200px; /* 調整右箭頭的位置 */
+    top: 55%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6A5ACD, #836FFF);
+    color: white;
+    border-radius: 50%;
+    font-size: 40px;
+    text-align: center;
+    line-height: 80px;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(106, 90, 205, 0.8);
+    transition: all 0.3s ease;
+  }
+  
+  .arrow-button:hover {
+    transform: translateY(-50%) scale(1.1);
+    background: linear-gradient(135deg, #7B68EE, #9370DB);
+    box-shadow: 0 0 30px rgba(123, 104, 238, 0.8);
+  }
+  
+  /* 第一個箭頭（右箭頭） */
+  .arrow-button1 {
+    position: absolute;
+    left: 200px;/* 讓左箭頭向左移動，避免與右箭頭重疊 */
+    top: 55%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6A5ACD, #836FFF);
+    color: white;
+    border-radius: 50%;
+    font-size: 40px;
+    text-align: center;
+    line-height: 80px;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(106, 90, 205, 0.8);
+    transition: all 0.3s ease;
+  }
+  
+  /* 第一個箭頭的懸停效果 */
+  .arrow-button1:hover {
+    transform: translateY(-50%) scale(1.1);
+    background: linear-gradient(135deg, #7B68EE, #9370DB);
+    box-shadow: 0 0 30px rgba(123, 104, 238, 0.8);
+  }
+
+.arrow-button2 {
+  position: absolute;
+  left: 200px; /* 讓左箭頭向左移動，避免與右箭頭重疊 */
+  top: 15%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #bd4040, #FF4500); /* 深紅到橘紅 */
+  color: white;
+  border-radius: 50%;
+  font-size: 40px;
+  text-align: center;
+  line-height: 80px;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(178, 34, 34, 0.8);
+  transition: all 0.3s ease;
+}
+
+/* 第一個箭頭的懸停效果 */
+.arrow-button2:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: linear-gradient(135deg, #DC143C, #FF6347); /* 懸停時的紅色漸層 */
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.8);
+}
