@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F0E5F4;
+  font-family: 'Arial', sans-serif;
+}
+
+h2 {
+  margin-bottom: 50px; /* 增加標題與按鈕之間的間距 */
+  font-size: 48px; /* 放大標題字體 */
+  color: #333;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 2px; /* 增加字母間距 */
+}
+
+form {
+  display: flex;
+  gap: 30px; /* 增加按鈕之間的間距 */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* 增加按鈕間距 */
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 30px 60px; /* 增加內邊距，使按鈕更大 */
+  text-align: center;
+  display: block;
+  font-size: 24px; /* 放大按鈕字體 */
+  margin: 15px 0;
+  cursor: pointer;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  width: 280px; /* 固定按鈕寬度 */
+}
+
+.button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.button1 {
+  background-color: #EFF2B2;
+  color: black;
+  border: 2px solid #C9E2A2;
+}
+
+.button1:hover {
+  background-color: #C9E2A2;
+  color: white;
+}
+
+.button2 {
+  background-color: #C9F2B2;
+  color: black;
+  border: 2px solid #A8D08D;
+}
+
+.button2:hover {
+  background-color: #A8D08D;
+  color: white;
+}
+
+/* 響應式設計 */
+@media (max-width: 600px) {
+  .button {
+    font-size: 22px;
+    padding: 25px 50px;
+    width: 250px; /* 調整按鈕寬度以適應小螢幕 */
+  }
+
+  h2 {
+    font-size: 36px; /* 在小螢幕上縮小標題字體 */
+  }
+}
+
+.arrow-button {
+  position: absolute;
+  left: 200px; /* 讓左箭頭向左移動，避免與右箭頭重疊 */
+  top: 15%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #bd4040, #FF4500); /* 深紅到橘紅 */
+  color: white;
+  border-radius: 50%;
+  font-size: 40px;
+  text-align: center;
+  line-height: 80px;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(178, 34, 34, 0.8);
+  transition: all 0.3s ease;
+}
+
+/* 第一個箭頭的懸停效果 */
+.arrow-button:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: linear-gradient(135deg, #DC143C, #FF6347); /* 懸停時的紅色漸層 */
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.8);
+}

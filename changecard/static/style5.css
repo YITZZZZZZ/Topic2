@@ -1,0 +1,79 @@
+/* 設置頁面結構 */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F0E5F4;
+  font-family: Arial, sans-serif;
+}
+
+/* 設置標題樣式 */
+h2 {
+  margin-bottom: 30px;
+  font-size: 3rem; /* 使用 rem 來調整字體大小，這樣會更響應式 */
+  color: #333;
+}
+
+/* 設置剩餘時間顯示在右上角 */
+#timer-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  background-color: #ffffffa0;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 隨著螢幕大小調整時間字體 */
+@media (max-width: 600px) {
+  #timer-container {
+    font-size: 1.5rem; /* 小螢幕上字體縮小 */
+  }
+}
+
+@media (max-width: 400px) {
+  #timer-container {
+    font-size: 1.2rem; /* 更小螢幕上字體縮小 */
+  }
+}
+
+/* 表單按鈕樣式 */
+form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 一行三個按鈕 */
+  gap: 20px; /* 每個按鈕的間距 */
+  justify-items: center; /* 讓按鈕水平置中 */
+  width: 100%; /* 使表單寬度填滿 */
+  max-width: 600px; /* 最大寬度限制 */
+  padding: 20px;
+}
+
+input[type="button"] {
+  width: 200px;
+  height: 200px;
+  font-size: 4rem; /* 使用 rem 單位來提高響應性 */
+  border-radius: 15px;
+  border: none;
+  background-color: #6495ED;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* 加入 box-shadow 讓按鈕有更多互動感 */
+}
+
+input[type="button"]:hover {
+  background-color: #B0C4DE;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 鼠標懸停時增加陰影 */
+}
+
+input[type="button"]:disabled {
+  background-color: #D3D3D3; /* 更加明顯的禁用顏色 */
+  cursor: default;
+}
