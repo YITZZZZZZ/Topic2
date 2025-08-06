@@ -182,7 +182,7 @@
       document.getElementById("usedTime1").textContent = timeLeft1 || "NA";
       document.getElementById("usedTime2").textContent = "—";
       document.getElementById("usedTime3").textContent = "—";
-      document.getElementById("usedTime").textContent = timeLeft1;
+      document.getElementById("usedTime").textContent = (parseInt(timeLeft1)/1).toFixed(2);
       document.getElementById("count").textContent = count1;
     } else {
       document.getElementById("level").textContent = level || "正式";
@@ -244,4 +244,5 @@
   </script>
 </body>
 </html>
+
 
