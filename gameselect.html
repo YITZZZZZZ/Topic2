@@ -68,6 +68,12 @@
       color: #333;
      
     }
+    .game-card.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  filter: grayscale(100%);
+  cursor: not-allowed;
+}
 
     .user-info {
       position: absolute;
@@ -110,15 +116,15 @@
       <div class="emoji">🃏🔄</div>
       <p>翻牌</p>
     </div>
-    <div class="game-card" onclick="location.href='/'" disable >
+    <div class="game-card disable" onclick="location.href='/'"  >
       <div class="emoji">🎈💥</div>
       <p>擊破氣球</p>
     </div>
-    <div class="game-card" onclick="location.href='/checkcardstart'" disable>
+    <div class="game-card disable" onclick="location.href='/checkcardstart'" >
       <div class="emoji">🔢🧠</div>
       <p>數字配對</p>
     </div>
-    <div class="game-card" onclick="location.href='/'" disable>
+    <div class="game-card disable" onclick="location.href='/'" disable>
       <div class="emoji">🔢➡️🔢</div>
       <p>數字連連看</p>
     </div>
@@ -151,4 +157,5 @@
   </script>
 </body>
 </html>
+
 
