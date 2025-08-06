@@ -165,6 +165,7 @@
 
   <script>
     const username = localStorage.getItem("nickname") || "訪客";
+    const hobby = localStorage.getItem("hobby");
     document.getElementById("username").textContent = `您好，${username}`;
 
     const timeLeft1 = localStorage.getItem("reminderTime");
@@ -200,6 +201,7 @@
     function saveGameResult() {
       const newRecord = {
         遊戲玩家名稱: username,
+	嗜好: hobby,
         遊戲名稱: "翻牌",
         遊戲關卡: level,
         第一關遊戲總秒數: timeLeft1 || null,
@@ -244,3 +246,4 @@
   </script>
 </body>
 </html>
+
