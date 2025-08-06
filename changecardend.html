@@ -182,17 +182,17 @@
       document.getElementById("usedTime1").textContent = timeLeft1 || "NA";
       document.getElementById("usedTime2").textContent = "—";
       document.getElementById("usedTime3").textContent = "—";
-      document.getElementById("usedTime").textContent = timeLeft1 ? parseFloat(timeLeft1).toFixed(2) : "NA";
+      document.getElementById("usedTime").textContent = 0;
       document.getElementById("count").textContent = count1;
     } else {
-      document.getElementById("level").textContent = level || "正式";
-      document.getElementById("usedTime1").textContent = timeLeft1 || "NA";
-      document.getElementById("usedTime2").textContent = timeLeft2 || "NA";
-      document.getElementById("usedTime3").textContent = timeLeft3 || "NA";
+      document.getElementById("level").textContent = level || "測驗";
+      document.getElementById("usedTime1").textContent = timeLeft1 || 0;
+      document.getElementById("usedTime2").textContent = timeLeft2 || 0;
+      document.getElementById("usedTime3").textContent = timeLeft3 || 0;
       if (timeLeft1 && timeLeft2 && timeLeft3) {
         document.getElementById("usedTime").textContent = calcAverage(timeLeft1, timeLeft2, timeLeft3);
       } else {
-        document.getElementById("usedTime").textContent = "NA";
+        document.getElementById("usedTime").textContent = timeLeft1;
       }
       document.getElementById("count").textContent = count1;
     }
@@ -205,7 +205,7 @@
         第一關遊戲總秒數: timeLeft1 || null,
         第二關遊戲總秒數: timeLeft2 || null,
         第三關遊戲總秒數: timeLeft3 || null,
-        總平均時間: (timeLeft1 && timeLeft2 && timeLeft3) ? calcAverage(timeLeft1, timeLeft2, timeLeft3) : timeLeft1 || "NA",
+        總平均時間: (timeLeft1 && timeLeft2 && timeLeft3) ? calcAverage(timeLeft1, timeLeft2, timeLeft3) : timeLeft1,
         提醒次數: count1,
         時間: new Date().toLocaleString()
       };
