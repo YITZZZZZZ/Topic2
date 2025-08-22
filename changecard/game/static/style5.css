@@ -1,0 +1,149 @@
+/* 基本設定 */
+html {
+  font-size: 18px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f9f9f9, #dbe9f4);
+  height: 100%;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #444;
+  user-select: none;
+  background-color: transparent;
+}
+
+h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #5a6d8c;
+  text-shadow: 1px 1px 2px rgba(90, 109, 140, 0.4);
+}
+
+#timer {
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-bottom: 1.2rem;
+  color: #5a6d8c;
+  text-shadow: 1px 1px 2px rgba(90, 109, 140, 0.3);
+}
+
+#hint-message {
+  display: none;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #d9534f; /* 溫和的紅色 */
+  margin-top: 1.2rem;
+  animation: pulse 1.2s infinite;
+  text-shadow: 1px 1px 2px rgba(217, 83, 79, 0.5);
+}
+
+/* 3x2 卡牌排列 */
+form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.5rem 2rem;
+  justify-items: center;
+  width: 100%;
+  max-width: 680px;
+  padding: 1.5rem 1rem 2rem;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(90, 109, 140, 0.15);
+  user-select: none;
+}
+
+/* 卡牌按鈕 */
+input[type="button"] {
+  width: 180px;
+  height: 180px;
+  min-width: 120px;
+  min-height: 120px;
+  font-size: 5rem;
+  border-radius: 18px;
+  border: 1.5px solid #aac4ff;
+  background: linear-gradient(145deg, #f0f4ff, #d9e2ff);
+  color: #5a6d8c;
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px rgba(90, 109, 140, 0.1),
+    inset 0 -3px 6px rgba(255, 255, 255, 0.9);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+input[type="button"]:hover:not(:disabled) {
+  background: linear-gradient(145deg, #e2e9ff, #b7c8ff);
+  color: #304875;
+  transform: scale(1.08);
+  box-shadow:
+    0 12px 20px rgba(48, 72, 117, 0.15),
+    inset 0 -5px 7px rgba(255, 255, 255, 0.95);
+}
+
+input[type="button"]:disabled {
+  background: #e0e4eb;
+  color: #9aa3b1;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* 脈動動畫 */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* 響應式調整 */
+@media (max-width: 700px) {
+  form {
+    max-width: 480px;
+    gap: 1.2rem 1.5rem;
+  }
+  input[type="button"] {
+    width: 140px;
+    height: 140px;
+    min-width: 110px;
+    min-height: 110px;
+    font-size: 4.3rem;
+  }
+  #timer {
+    font-size: 2.3rem;
+  }
+  #hint-message {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    max-width: 360px;
+    gap: 1rem 1rem;
+  }
+  input[type="button"] {
+    width: 120px;
+    height: 120px;
+    min-width: 100px;
+    min-height: 100px;
+    font-size: 3.7rem;
+  }
+  #timer {
+    font-size: 1.8rem;
+  }
+  #hint-message {
+    font-size: 1.5rem;
+  }
+}

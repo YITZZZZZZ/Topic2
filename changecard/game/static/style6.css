@@ -1,0 +1,136 @@
+/* 全局設定 */
+html {
+  font-size: 18px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f9f9f9, #dbe9f4);
+  height: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* 主體樣式 */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #444;
+  background-color: transparent;
+  user-select: none;
+  position: relative;
+}
+
+/* 標題 */
+h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #5a6d8c;
+  text-shadow: 1px 1px 2px rgba(90, 109, 140, 0.4);
+}
+
+/* 計時器區塊 */
+#timer-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #5a6d8c;
+  background-color: #ffffffcc;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(90, 109, 140, 0.1);
+  text-shadow: 1px 1px 2px rgba(90, 109, 140, 0.2);
+}
+
+/* 4x3 卡牌排列 */
+form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem 2rem;
+  justify-items: center;
+  width: 100%;
+  max-width: 820px;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(90, 109, 140, 0.15);
+}
+
+/* 卡牌按鈕樣式 */
+input[type="button"] {
+  width: 160px;
+  height: 160px;
+  font-size: 4.8rem;
+  border-radius: 18px;
+  border: 1.5px solid #aac4ff;
+  background: linear-gradient(145deg, #f0f4ff, #d9e2ff);
+  color: #5a6d8c;
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px rgba(90, 109, 140, 0.1),
+    inset 0 -3px 6px rgba(255, 255, 255, 0.9);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* 懸停效果 */
+input[type="button"]:hover:not(:disabled) {
+  background: linear-gradient(145deg, #e2e9ff, #b7c8ff);
+  color: #304875;
+  transform: scale(1.08);
+  box-shadow:
+    0 12px 20px rgba(48, 72, 117, 0.15),
+    inset 0 -5px 7px rgba(255, 255, 255, 0.95);
+}
+
+/* 禁用按鈕 */
+input[type="button"]:disabled {
+  background: #e0e4eb;
+  color: #9aa3b1;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* 響應式 */
+@media (max-width: 768px) {
+  form {
+    max-width: 600px;
+    gap: 1.2rem 1.5rem;
+  }
+
+  input[type="button"] {
+    width: 130px;
+    height: 130px;
+    font-size: 3.8rem;
+  }
+
+  #timer-container {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    max-width: 360px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 1rem;
+  }
+
+  input[type="button"] {
+    width: 100px;
+    height: 100px;
+    font-size: 3.2rem;
+  }
+
+  #timer-container {
+    font-size: 1.1rem;
+  }
+}
