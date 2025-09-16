@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>遊戲結果與匯出</title>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: "標楷體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      background-color: #f9fbfc;
+      color: #000;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .user-info {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      background-color: #ffffffcc;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      max-width: 300px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      z-index: 9999;
+    }
+
+    .user-info button {
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background-color: #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      user-select: none;
+    }
+
+    .user-info button:hover {
+      background-color: #ccc;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin: 0;
+      color: #667788;
+      text-align: center;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 20px;
+      width: 100%;
+      height: 200px;
+      max-width: 600px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex-grow: 1;
+    }
+
+    .result-box, .result-box1 {
+      font-size: 1.5rem;
+      padding: 1rem;
+      border-radius: 15px;
+      word-break: break-word;
+    }
+
+    .result-box {
+      background-color: #f0f0f0;
+      color: #555;
+    }
+
+    .result-box1 {
+      background-color: #e6e6e6;
+      color: #444;
+      font-weight: bold;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+      width: 100%;
+      max-width: 600px;
+      flex-shrink: 0;
+    }
+
+    .buttons button {
+      flex: 1 1 0;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+      background-color: #ddd;
+      font-family: "標楷體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      transition: background-color 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      user-select: none;
+    }
+
+    .buttons button:hover {
+      background-color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .result-box, .result-box1 {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+      }
+      .buttons button {
+        font-size: 1.2rem;
+      }
+      .user-info {
+        font-size: 1.2rem;
+        max-width: 180px;
+        padding: 0.8rem;
+      }
+      .user-info button {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+        margin-left: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="user-info">
+    <span id="usernameDisplay">您好，玩家</span>
+    <button onclick="logout()">登出</button>
+  </div>
+
+  <div class="container">
+    <div class="result-box">
+      <div>遊戲版本：<span id="level"></span></div>
+      <div style="font-size: 20px;">第一關用時(1-5)：<span id="usedTime1" style="font-size: 20px;">—</span> 秒</div>
+      <div style="font-size: 20px;">提醒次數(1-5)：<span id="count1" style="font-size: 20px;"></span> 次</div><br>
+      <div style="font-size: 20px;">第二關用時(1-10)：<span id="usedTime2" style="font-size: 20px;">—</span> 秒</div>
+      <div style="font-size: 20px;">提醒次數(1-10)：<span id="count2" style="font-size: 20px;"></span> 次</div><br>
+      <div style="font-size: 20px;">第三關用時(1-15)：<span id="usedTime3" style="font-size: 20px;">—</span> 秒</div>
+      <div style="font-size: 20px;">提醒次數(1-15)：<span id="count3" style="font-size: 20px;"></span> 次</div><br>
+      <div style="font-size: 20px;">第四關用時(1-20)：<span id="usedTime4" style="font-size: 20px;">—</span> 秒</div>
+      <div style="font-size: 20px;">提醒次數(1-20)：<span id="count4" style="font-size: 20px;"></span> 次</div>
+    </div>
+    <div class="result-box1">
+      平均用時：<span id="usedTime">—</span> 秒<br>
+      點擊錯誤次數：<span id="count"></span> 次<br>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button onclick="location.href='number.html'; clearGame()">再玩一次</button>
+    <button onclick="location.href='../gameselect.html'; clearGame()">回選單</button>
+    <button onclick="exportAllGameTables()">匯出報表</button>
+  </div>
+
+  <script>
+    const username = localStorage.getItem('nickname') || '玩家';
+    const hobby = localStorage.getItem('hobby') || localStorage.getItem('habit') || '未知';
+    const level = localStorage.getItem("test");
+
+    const timeLeft1 = parseFloat(localStorage.getItem('duration')) || null;
+    const timeLeft2 = parseFloat(localStorage.getItem('duration1')) || null;
+    const timeLeft3 = parseFloat(localStorage.getItem('duration2')) || null;
+    const timeLeft4 = parseFloat(localStorage.getItem('duration3')) || null;
+    const count1 = localStorage.getItem("hintCount") || "0";
+    const count2 = localStorage.getItem("hintCount1") || "0";
+    const count3 = localStorage.getItem("hintCount2") || "0";
+    const count4 = localStorage.getItem("hintCount3") || "0";
+    const count = localStorage.getItem("wrongClicks") || "0";
+
+    document.getElementById('usernameDisplay').textContent = `您好，${username}`;
+    document.getElementById("level").textContent = level;
+    document.getElementById('usedTime1').textContent = timeLeft1?.toFixed(2) ?? "—";
+    document.getElementById('usedTime2').textContent = timeLeft2?.toFixed(2) ?? "—";
+    document.getElementById('usedTime3').textContent = timeLeft3?.toFixed(2) ?? "—";
+    document.getElementById('usedTime4').textContent = timeLeft4?.toFixed(2) ?? "—";
+    document.getElementById('count1').textContent = count1;
+    document.getElementById('count2').textContent = count2;
+    document.getElementById('count3').textContent = count3;
+    document.getElementById('count4').textContent = count4;
+    document.getElementById('count').textContent = count;
+
+    function calcAverage(...times) {
+      const valid = times.filter(t => typeof t === 'number' && !isNaN(t));
+      if (valid.length === 0) return null;
+      return valid.reduce((a, b) => a + b, 0) / valid.length;
+    }
+
+    const avg = calcAverage(timeLeft1, timeLeft2, timeLeft3, timeLeft4);
+    document.getElementById('usedTime').textContent = avg !== null ? avg.toFixed(2) : "—";
+
+    function saveGameResultToNewTable() {
+      const now = new Date();
+      const timestamp = now.toISOString().replace(/[:.]/g, '-');
+      const key = `numberGameResult_${timestamp}`;
+
+      const newRecord = {
+        遊戲玩家名稱: username,
+        嗜好: hobby,
+        遊戲名稱: "數字連線",
+        遊戲關卡: level,
+        第一關遊戲1到5總秒數: timeLeft1,
+        第一關遊戲1到5提醒次數: count1,
+        第二關遊戲1到10總秒數: timeLeft2,
+        第二關遊戲1到10提醒次數: count2,
+        第三關遊戲1到15總秒數: timeLeft3,
+        第三關遊戲1到15提醒次數: count3,
+        第四關遊戲1到20總秒數: timeLeft4,
+        第四關遊戲1到15提醒次數: count4,
+        總平均時間: avg !== null ? avg.toFixed(2) : null,
+        錯誤提醒次數: count,
+        時間: now.toLocaleString()
+      };
+
+      localStorage.setItem(key, JSON.stringify([newRecord]));
+
+      let tableList = JSON.parse(localStorage.getItem("numberGameTables") || "[]");
+      tableList.push(key);
+      localStorage.setItem("numberGameTables", JSON.stringify(tableList));
+    }
+
+    saveGameResultToNewTable();
+
+    function clearGame() {
+      const keys = ["duration", "duration1", "duration2", "duration3", "wrongClicks", "hintCount","hintCount1","hintCount2","hintCount3"];
+      keys.forEach(k => localStorage.removeItem(k));
+    }
+
+    function logout() {
+      localStorage.clear();
+      location.href = "../index.html";
+    }
+
+    function exportAllGameTables() {
+      const tableList = JSON.parse(localStorage.getItem("numberGameTables") || "[]");
+      const allRecords = [];
+
+      for (const key of tableList) {
+        const records = JSON.parse(localStorage.getItem(key) || "[]");
+        records.forEach(r => {
+          allRecords.push({ 表名: "數字連線", ...r });
+        });
+      }
+
+      if (allRecords.length === 0) {
+        alert("沒有資料可匯出！");
+        return;
+      }
+
+      const ws = XLSX.utils.json_to_sheet(allRecords);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "數字連線遊戲紀錄");
+      XLSX.writeFile(wb, `game_results_${username}.xlsx`);
+    }
+  </script>
+
+</body>
+</html>
